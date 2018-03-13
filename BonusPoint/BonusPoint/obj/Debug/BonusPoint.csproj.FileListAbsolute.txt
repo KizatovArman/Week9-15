@@ -1,0 +1,10 @@
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\bin\Debug\BonusPoint.exe.config
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\bin\Debug\BonusPoint.exe
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\bin\Debug\BonusPoint.pdb
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\obj\Debug\BonusPoint.csprojResolveAssemblyReference.cache
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\obj\Debug\BonusPoint.Form1.resources
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\obj\Debug\BonusPoint.Properties.Resources.resources
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\obj\Debug\BonusPoint.csproj.GenerateResource.cache
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\obj\Debug\BonusPoint.csproj.CoreCompileInputs.cache
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\obj\Debug\BonusPoint.exe
+D:\ProgrammingPrinciplesII\BonusPoint\BonusPoint\obj\Debug\BonusPoint.pdb
