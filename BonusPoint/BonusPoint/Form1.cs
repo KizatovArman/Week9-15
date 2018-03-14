@@ -15,24 +15,35 @@ namespace BonusPoint
 
         int dx = 15;
         int dy = 16;
-        List<Button> body;
+        int cnt = 0;
+        int k = 0;
+        bool canplay = true;
+       
+        List<Button> body = new List<Button>(); 
         public Form1()
         {
             InitializeComponent();
         }
 
-        //body = new List<Button>();
+       
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            /*int cnt = 0; 
-            if (cnt%10==0)
+            
+            if (cnt%5==0)
             { 
-                int x1 = new Random().Next(1, Width - 10);
+                int x1 = new Random().Next(1, Width - 60);
                 Button btn = new Button();
-                btn.Size = new Size(10, 10);
+                btn.Size = new Size(15, 15);
                 btn.Location = new Point(x1, 0);
+                btn.BackColor = Color.White;
+                btn.Text = "!!!!";
                 body.Add(btn);
+                Controls.Add(btn);
+                if(timer1.Interval>=40)
+                {
+                    timer1.Interval -= 5;
+                }
             }
             else
             {
@@ -40,41 +51,12 @@ namespace BonusPoint
                 for (int i = 1; i < body.Count(); i++)
                 {
                     int y = body[i].Location.Y;
-                    body[i].Location = new Point(x1, y + dy);
+                    body[i].Location = new Point(body[i].Location.X, y + dy);
+                    if (body[i].Location.Y == Height)
+                        k++;
                 }
             }
-            cnt++;*/
-
-            int cnt = 0;
-            int ch1 = button1.Location.Y;
-            button1.Location = new Point(button1.Location.X, button1.Location.Y + dy);
-            if(button1.Location.Y == Height-1)
-            {
-                button1.Location = new Point(button1.Location.X, 1);
-            }
-
-            int ch2 = button2.Location.Y;
-            button2.Location = new Point(button2.Location.X, button2.Location.Y + dy);
-            if (button2.Location.Y == Height - 1)
-            {
-                button2.Location = new Point(button2.Location.X, 1);
-            }
-
-            int ch3 = button3.Location.Y;
-            button3.Location = new Point(button3.Location.X, button3.Location.Y + dy);
-            if (button3.Location.Y == Height - 1)
-            {
-                button3.Location = new Point(button3.Location.X, 1);
-            }
-
-            int ch4 = button4.Location.Y;
-            button4.Location = new Point(button4.Location.X, button4.Location.Y + dy);
-            if (button4.Location.Y == Height - 1)
-            {
-                button4.Location = new Point(button4.Location.X, 1);
-            }
-
-
+            cnt++;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -101,30 +83,21 @@ namespace BonusPoint
                     label1.Location = new Point(x, label1.Location.Y);
                     if (x <= 0)
                     {
-                        label1.Location = new Point(Width-1, label1.Location.Y);
+                        label1.Location = new Point(Width, label1.Location.Y);
                     }
                 }
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-
+           
+            this.BackColor = Color.Black;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
+            label2.Text = k.ToString();
         }
     }
 }
