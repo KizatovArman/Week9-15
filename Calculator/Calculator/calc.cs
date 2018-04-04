@@ -15,6 +15,7 @@ namespace Calculator
         public double result;
         public string operation;
         public string error;
+        public int vvodchisla;
 
         public Calc()
         {
@@ -25,6 +26,7 @@ namespace Calculator
             result = 0;
             operation = "";
             error = "";
+            vvodchisla = 1;
         }
 
         
@@ -97,29 +99,19 @@ namespace Calculator
             {
                 case "+":
                     result = firstnumber + seconnumber;
-                    firstnumber = result;
-                    prevnumber = seconnumber;
-                    operation = "+";
+                    
                     break;
                 case "-":
                     result = firstnumber - seconnumber;
-                    firstnumber = result;
-                    prevnumber = seconnumber;
-                    operation = "-";
+                   
                     break;
                 case "X":
-                    result = firstnumber * seconnumber;
-                    firstnumber = result;
-                    prevnumber = seconnumber;
-                    operation = "X";
+                    result = firstnumber * seconnumber;      
                     break;
                 case "/":
                     if (seconnumber != 0)
                     {
-                        result = firstnumber / seconnumber;
-                        firstnumber = result;
-                        prevnumber = seconnumber;
-                        operation = "/";
+                        result = firstnumber / seconnumber;  
                     }
                     else
                         error = "Error";

@@ -15,11 +15,13 @@ namespace Calculator
 
         Calc calculator = new Calc();
         public double calcmemory = 0;
-
+        public bool clicked;
         public Form1()
         {
             InitializeComponent();
+            textBox1.Enabled = false;
             textBox1.Text = "0";
+            clicked = false;
         }
 
 
@@ -31,6 +33,7 @@ namespace Calculator
 
         private void button1_Click(object sender, EventArgs e)
         {
+            clicked = false;
             Button btn = sender as Button;
             if(textBox1.Text == "0" || textBox1.Text == "Error")
             {
@@ -45,7 +48,6 @@ namespace Calculator
         private void Result_click(object sender, EventArgs e)
         {
             calculator.seconnumber = float.Parse(textBox1.Text);
-            double x1 = calculator.seconnumber;
             calculator.Basicoperation();
             textBox1.Text = calculator.result + "";
             calculator.firstnumber=calculator.result;         
@@ -93,9 +95,7 @@ namespace Calculator
             Button btn4 = sender as Button;
             calculator.operation = btn4.Text;
             calculator.firstnumber = double.Parse(textBox1.Text);
-           
-
-                        
+            calculator.Complexoperations();                        
         }
 
         private void grandclear_click(object sender, EventArgs e)
@@ -106,12 +106,45 @@ namespace Calculator
 
         private void Basicoperation_click(object sender, EventArgs e)
         {
+            clicked = true;
             Button btn3 = sender as Button;
+          //  calculator.firstnumber = float.Parse(textBox1.Text);
+            while (clicked == true)
+            {
+              
+                calculator.operation = btn3.Text;
+                textBox1.Text = "";
+            }
+
             calculator.firstnumber = float.Parse(textBox1.Text);
-            calculator.operation = btn3.Text;
-            textBox1.Text = "";
-            
-            calculator.Basicoperation();
+            calculator.Basicoperation();            
+        }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+            calcmemory = double.Parse(textBox1.Text);
+        }
+
+        private void button34_Click(object sender, EventArgs e)
+        {
+            calcmemory = 0;
+
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = calcmemory + "";
+        }
+
+        private void button37_Click(object sender, EventArgs e)
+        {
+            calcmemory += double.Parse(textBox1.Text);
+        }
+
+        private void button36_Click(object sender, EventArgs e)
+        {
+
+            calcmemory -= double.Parse(textBox1.Text);
         }
     }
 }
