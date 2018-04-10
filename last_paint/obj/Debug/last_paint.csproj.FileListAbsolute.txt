@@ -1,0 +1,10 @@
+C:\Users\ПК\source\repos\last_paint\last_paint\bin\Debug\last_paint.exe.config
+C:\Users\ПК\source\repos\last_paint\last_paint\bin\Debug\last_paint.exe
+C:\Users\ПК\source\repos\last_paint\last_paint\bin\Debug\last_paint.pdb
+C:\Users\ПК\source\repos\last_paint\last_paint\obj\Debug\last_paint.csprojResolveAssemblyReference.cache
+C:\Users\ПК\source\repos\last_paint\last_paint\obj\Debug\last_paint.Form1.resources
+C:\Users\ПК\source\repos\last_paint\last_paint\obj\Debug\last_paint.Properties.Resources.resources
+C:\Users\ПК\source\repos\last_paint\last_paint\obj\Debug\last_paint.csproj.GenerateResource.cache
+C:\Users\ПК\source\repos\last_paint\last_paint\obj\Debug\last_paint.csproj.CoreCompileInputs.cache
+C:\Users\ПК\source\repos\last_paint\last_paint\obj\Debug\last_paint.exe
+C:\Users\ПК\source\repos\last_paint\last_paint\obj\Debug\last_paint.pdb
