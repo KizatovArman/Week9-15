@@ -21,108 +21,86 @@ namespace Battle_Ship
     ;
     public partial class Form1 : Form
     {
-        Ships ships;
-        bool clicked;
-        int coordinatex;
-        int coordinatey;
-        Point prev, cur;
-        bool can_draw4, can_draw3, can_draw2, can_draw1;
         Graphics g;
-        int kolvo4;
-        int kolvo3;
-        int kolvo2;
-        int kolvo1;
-        
-        
+        Bitmap bmp;
+        bool Clicked;
+        bool three;
+        int x;
+        int y;
+
         public Form1()
         {
-
-            ships = Ships.Shipsizeoffour;
             InitializeComponent();
-            g = CreateGraphics();
-            kolvo1 = 5;
-            kolvo2 = 4;
-            kolvo3 = 3;
-            kolvo4 = 2;
-            clicked = false;
-            can_draw1 = true;
-            can_draw2 = true;
-            can_draw3 = true;
-            can_draw4 = true;
+            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            pictureBox1.Image = bmp;
+            g = Graphics.FromImage(bmp);
+            Clicked = false;
+            three = false;
+
+            Rectangle[,] rects = new Rectangle[10, 10];
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    rects[i, j] = new Rectangle();
+                    rects[i, j].Size = new Size(35, 35);
+                    rects[i, j].Location = new Point(10 + j * 37, 10 + i * 37);
+                    g.DrawRectangle(new Pen(Color.Black), rects[i, j]);
+                }
+            }
+
 
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            clicked = true;
-            coordinatex = e.X;
-            coordinatey = e.Y;
-            
+            Clicked = true;
+            Rectangle[,] rects = new Rectangle[10, 10];
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    rects[j, i] = new Rectangle();
+                    rects[j, i].Size = new Size(35, 35);
+                    rects[j, i].Location = new Point(10 + j * 37, 10 + i * 37);
+                    g.DrawRectangle(new Pen(Color.Black), rects[j, i]);
+                    if (rects[j, i].Contains(x, y) && Clicked == true)
+                    {
+                        SolidBrush br = new SolidBrush(Color.Red);
+                        g.FillRectangle(br, rects[j, i]);
+                        g.FillRectangle(br, rects[j, i - 1]);
+                        g.FillRectangle(br, rects[j, i + 1]);
+                    }
+                }
+            }
+
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            clicked = false;
+           
             
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ships = Ships.Shipsizeofthree;
-            if (kolvo3 != 0 && can_draw3 == true)
-            {
-                kolvo3--;
-            }
-            if (kolvo3 == 0)
-                can_draw3 = false;
+            three = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ships = Ships.Shipsizeoftwo;
-            if (kolvo2 != 0 && can_draw2 == true)
-            {
-                kolvo2--;
-            }
-            if (kolvo2 == 0)
-                can_draw2 = false;
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ships = Ships.Shipesizeofone;
-            if (kolvo1 != 0 && can_draw1 == true)
-            {
-                kolvo1--;
-            }
-            if (kolvo1 == 0)
-                can_draw1 = false;
+           
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if(clicked && can_draw4)
-            {
-                cur = e.Location;
-                
-            }
-            if (clicked && can_draw3)
-            {
-                cur = e.Location;
-                
-
-            }
-            if (clicked && can_draw2)
-            {
-                cur = e.Location;
-               
-            }
-            if (clicked && can_draw1)
-            {
-                cur = e.Location;
-                
-            }
-            pictureBox1.Refresh();
+            x = e.X;
+            y = e.Y;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -132,52 +110,35 @@ namespace Battle_Ship
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+            Rectangle[,] rects = new Rectangle[10, 10];
+
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 30*i + 30, 30*j + 30, 30*j + 30, 30*i + 30);   
+                    rects[j, i] = new Rectangle();
+                    rects[j, i].Size = new Size(35, 35);
+                    rects[j, i].Location = new Point(10 + j * 37, 10 + i * 37);
+                    e.Graphics.DrawRectangle(new Pen(Color.Black), rects[j, i]);
+                    if (rects[j, i].Contains(x, y) && three == true)
+                    {
+
+                        SolidBrush br = new SolidBrush(Color.Red);
+
+                        e.Graphics.FillRectangle(br, rects[j, i]);
+                        e.Graphics.FillRectangle(br, rects[j, i - 1]);
+                        e.Graphics.FillRectangle(br, rects[j, i + 1]);
+                    }
+
+
                 }
             }
-
-            if (clicked && can_draw4 && ships == Ships.Shipsizeoffour)
-            {
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex, coordinatey, 30,  30);
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex+30, coordinatey, 30, 30);
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex + 60, coordinatey , 30, 30);
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex + 90, coordinatey , 30, 30);
-            }
-
-            if (clicked && can_draw3 && ships == Ships.Shipsizeofthree)
-            {
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex, coordinatey, 30, 30);
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex + 30, coordinatey, 30, 30);
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex + 60, coordinatey, 30, 30);
-            }
-
-            if (clicked && can_draw2 && ships == Ships.Shipsizeoftwo)
-            {
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex, coordinatey, 30, 30);
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex + 30, coordinatey, 30, 30);
-                
-            }
-            if (clicked && can_draw1 && ships == Ships.Shipesizeofone)
-            {
-                e.Graphics.DrawRectangle(new Pen(Color.Blue, 2), coordinatex, coordinatey, 30, 30);
-               
-
-            }
+            pictureBox1.Refresh();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ships = Ships.Shipsizeoffour;
-            if(kolvo4!=0 &&can_draw4==true)
-            {
-                kolvo4--;
-            }
-            if (kolvo4 == 0)
-                can_draw4 = false;
+            
         }
     }
 }
