@@ -23,57 +23,45 @@ namespace Battle_Ship
     {
         Graphics g;
         Bitmap bmp;
-        bool Clicked;
-        bool three;
+        
+        bool clicked;
+        bool vertical, horizontal;
+        bool ship1,ship2,ship3,ship4;
         int x;
         int y;
+        int cntof1, cntof2, cntof3, cntof4;
 
         public Form1()
         {
             InitializeComponent();
+            horizontal = true;
+            vertical = false;
             bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = bmp;
             g = Graphics.FromImage(bmp);
-            Clicked = false;
-            three = false;
+            clicked = false;
+            ship1 = false;
+            ship2 = false;
+            ship3 = false;
+            ship4 = false;
 
-            Rectangle[,] rects = new Rectangle[10, 10];
+            Rectangle[,] fieldcomp = new Rectangle[10, 10];
             for (int i = 0; i < 10; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for(int j = 0; j <10; j++)
                 {
-                    rects[i, j] = new Rectangle();
-                    rects[i, j].Size = new Size(35, 35);
-                    rects[i, j].Location = new Point(10 + j * 37, 10 + i * 37);
-                    g.DrawRectangle(new Pen(Color.Black), rects[i, j]);
+                    fieldcomp[i, j] = new Rectangle();
+                    fieldcomp[i, j].Size = new Size(40, 40);
+                    fieldcomp[i, j].Location = new Point(15 + i * 35, 15 + j * 35);
+                    g.DrawRectangle(new Pen(Color.Black), fieldcomp[i, j]);
+                    
                 }
             }
-
-
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            Clicked = true;
-            Rectangle[,] rects = new Rectangle[10, 10];
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    rects[j, i] = new Rectangle();
-                    rects[j, i].Size = new Size(35, 35);
-                    rects[j, i].Location = new Point(10 + j * 37, 10 + i * 37);
-                    g.DrawRectangle(new Pen(Color.Black), rects[j, i]);
-                    if (rects[j, i].Contains(x, y) && Clicked == true)
-                    {
-                        SolidBrush br = new SolidBrush(Color.Red);
-                        g.FillRectangle(br, rects[j, i]);
-                        g.FillRectangle(br, rects[j, i - 1]);
-                        g.FillRectangle(br, rects[j, i + 1]);
-                    }
-                }
-            }
-
+            
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -82,9 +70,23 @@ namespace Battle_Ship
             
         }
 
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Left)
+            {
+                horizontal = true;
+                vertical = false;
+            }
+            if(e.KeyCode == Keys.Up)
+            {
+                vertical = true;
+                horizontal = false;
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            three = true;
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -99,8 +101,7 @@ namespace Battle_Ship
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            x = e.X;
-            y = e.Y;
+           
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -110,30 +111,7 @@ namespace Battle_Ship
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            Rectangle[,] rects = new Rectangle[10, 10];
-
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    rects[j, i] = new Rectangle();
-                    rects[j, i].Size = new Size(35, 35);
-                    rects[j, i].Location = new Point(10 + j * 37, 10 + i * 37);
-                    e.Graphics.DrawRectangle(new Pen(Color.Black), rects[j, i]);
-                    if (rects[j, i].Contains(x, y) && three == true)
-                    {
-
-                        SolidBrush br = new SolidBrush(Color.Red);
-
-                        e.Graphics.FillRectangle(br, rects[j, i]);
-                        e.Graphics.FillRectangle(br, rects[j, i - 1]);
-                        e.Graphics.FillRectangle(br, rects[j, i + 1]);
-                    }
-
-
-                }
-            }
-            pictureBox1.Refresh();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
